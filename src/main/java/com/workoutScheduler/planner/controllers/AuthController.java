@@ -39,6 +39,7 @@ public class AuthController {
         user.setFullname(request.getFullname());
         user.setPassword(encoder.encode(request.getPassword()));
 
+        userRepo.save(user);
         return ResponseEntity.ok("User successfully registered");
     }
 

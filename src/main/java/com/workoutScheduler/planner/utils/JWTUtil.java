@@ -1,6 +1,5 @@
 package com.workoutScheduler.planner.utils;
 
-import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.JwtParser;
 import io.jsonwebtoken.Jwts;
@@ -15,28 +14,32 @@ import java.util.Date;
 
 @Component
 public class JWTUtil {
+
     @Value("${jwt.secret}")
     private String secret;
 
     @Value("${jwt.expiration}")
     private long expiration;
 
-    private final SecretKey secretKey = Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
+    private SecretKey getSecretKey() {
+        return Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
+    }
 
-    public String generateToken(String email){
+    public String generateToken(String email) {
         Date now = new Date();
         Date expiryDate = new Date(now.getTime() + expiration);
-        Key key = Keys.hmacShaKeyFor(secret.getBytes());
+
         return Jwts.builder()
                 .subject(email)
                 .issuedAt(now)
                 .expiration(expiryDate)
-                .signWith(key)
+                .signWith(getSecretKey())
                 .compact();
     }
-    public String getEmailFromToken(String token){
+
+    public String getEmailFromToken(String token) {
         JwtParser parser = Jwts.parser()
-                .verifyWith(secretKey)
+                .verifyWith(getSecretKey())
                 .build();
 
         return parser.parseSignedClaims(token)
@@ -44,14 +47,14 @@ public class JWTUtil {
                 .getSubject();
     }
 
-    public boolean validateToken(String token){
-        try{
+    public boolean validateToken(String token) {
+        try {
             Jwts.parser()
-                    .verifyWith(secretKey)
+                    .verifyWith(getSecretKey())
                     .build()
                     .parseSignedClaims(token);
             return true;
-        }catch(JwtException e){
+        } catch (JwtException e) {
             return false;
         }
     }
