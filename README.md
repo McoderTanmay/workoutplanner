@@ -53,5 +53,5 @@ Seeder class populates initial `Exercise` data.
    ```bash
    mvn clean install
    mvn spring-boot:run
-  ```
+   ```
 
