@@ -8,7 +8,7 @@ import java.util.List;
 public class Workout {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int wid;
+    private Long wid;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "exercise_id", referencedColumnName = "eid")
@@ -22,11 +22,11 @@ public class Workout {
     @JoinColumn(name = "user_id", referencedColumnName = "uid")
     private Users id;
 
-    public int getWid() {
+    public Long getWid() {
         return wid;
     }
 
-    public void setWid(int wid) {
+    public void setWid(Long wid) {
         this.wid = wid;
     }
 

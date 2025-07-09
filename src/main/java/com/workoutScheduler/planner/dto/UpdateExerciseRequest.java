@@ -1,14 +1,6 @@
-package com.workoutScheduler.planner.models;
+package com.workoutScheduler.planner.dto;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-
-@Entity
-public class Exercise {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class UpdateExerciseRequest {
     private Long eid;
     private String name;
     private String description;

@@ -1,27 +1,10 @@
-package com.workoutScheduler.planner.models;
+package com.workoutScheduler.planner.dto;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-
-@Entity
-public class Exercise {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long eid;
+public class CreateExerciseRequest {
     private String name;
     private String description;
     private String category;
     private String muscleGroup;
-
-    public Long getEid() {
-        return eid;
-    }
-
-    public void setEid(Long eid) {
-        this.eid = eid;
-    }
 
     public String getName() {
         return name;
