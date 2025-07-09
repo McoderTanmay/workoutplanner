@@ -11,9 +11,6 @@ A RESTful API for a workout tracking application. This backend system allows use
 - 🏃‍♀️ Manage Exercises (name, description, category/muscle group)
 - 📋 Create, Update, and Delete Workout Plans
 - 📅 Schedule workouts on specific dates and times
-- 📈 Generate reports on past workouts and performance
-- 🧪 Unit Testing for reliability
-- 📄 API documented using OpenAPI/Swagger
 
 ---
 
